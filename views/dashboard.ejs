@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+  <title>Todo App</title>
+  <link
+    href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Candal|Chewy&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body>
+  <form action="/logout" method="post">
+    <button type="submit" class="logout">Logout</button>
+  </form>
+  <div class="todo-container">
+    <h2><%= name %>'s To-Do List</h2>
+    <div class="todo">
+      <form action="/addtodo" method="POST" class="todo-header">
+        <input type="text" name="content" />
+        <button type="submit"><span class="fas fa-plus"></span></button>
+      </form>
+      <% todos.forEach(todo => {  %>
+      <ul class="todo-list">
+        <li class="todo-list-item">
+          <div class="todo-list-item-name"><%= todo.content %></div>
+          <a href="/edittodo/<%= todo._id %>" class="edit">
+            <span class="fas fa-edit"></span>
+          </a>
+          <form action="/deletetodo/<%= todo._id %>" method="post">
+            <a href="" class="remove">
+              <button type="submit"><span class="fas fa-times"></span></button>
+            </a>
+          </form>
+        </li>
+      </ul>
+      <% }) %>
+    </div>
+  </div>
+</body>
